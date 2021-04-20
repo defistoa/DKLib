@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B2BA9D6F-671F-462C-9BEC-88CC4896ADF0}</ProjectGuid>
+    <RootNamespace>DKLib</RootNamespace>
+    <Keyword>MFCDLLProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\VTSAll\VirtualTradingSystem.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\VTSAll\VirtualTradingSystem.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(PROF_UIS)\Bin_1000\;$(BOOST_ROOT)\stage\lib;$(LOKI)\lib;$(DKLIB)\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DKLIB_IMPL;WIN32;_WINDOWS;_DEBUG;_AFXEXT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>.\DKLib.def</ModuleDefinitionFile>
+      <ImportLibrary>D:\VTSBins\lib\Debug\$(TargetName).lib</ImportLibrary>
+      <AdditionalDependencies>winmm.lib;Imm32.lib;</AdditionalDependencies>
+      <Profile>false</Profile>
+      <Version>
+      </Version>
+      <OutputFile>$(VTSBINS)\Debug\Client\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(VTSBINS)\Debug\Client\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy $(VTSBINS)\Debug\Client\$(TargetName)$(TargetExt)  	$(VTSBINS)\Debug\Manager
+copy $(VTSBINS)\Debug\Client\$(TargetName).pdb			  	$(VTSBINS)\Debug\Manager
+
+copy $(VTSBINS)\Debug\Client\$(TargetName)$(TargetExt)  	$(VTSBINS)\Debug\Server
+copy $(VTSBINS)\Debug\Client\$(TargetName).pdb			  	$(VTSBINS)\Debug\Server</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_DKLIB_IMPL;WIN32;_WINDOWS;NDEBUG;_AFXEXT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>.\DKLib.def</ModuleDefinitionFile>
+      <ImportLibrary>D:\VTSBins\lib\Release\$(TargetName).lib</ImportLibrary>
+      <AdditionalDependencies>winmm.lib;Imm32.lib;</AdditionalDependencies>
+      <Version>
+      </Version>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) 	$(VTSBINS)\Release\Common
+copy $(OutDir)$(TargetName)$(TargetExt) 	$(VTSBINS)\Release\Server
+
+copy $(OutDir)$(TargetName)$(TargetExt) 	$(VTSBINS)\$(VTSVer)\Common
+copy $(OutDir)$(TargetName).pdb 			$(VTSBINS)\$(VTSVer)\Common</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DKBuffer.cpp" />
+    <ClCompile Include="DKEnvironment.cpp" />
+    <ClCompile Include="DKExceptHandler.cpp" />
+    <ClCompile Include="DKFileToMem.cpp" />
+    <ClCompile Include="DKLib.cpp" />
+    <ClCompile Include="DKMsgOnlyWnd.cpp" />
+    <ClCompile Include="DKobject.cpp" />
+    <ClCompile Include="DKObserver.cpp" />
+    <ClCompile Include="DK_API.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StdioFileEx.cpp" />
+    <ClCompile Include="ToThousandStr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DKLib.def" />
+    <None Include="res\DKLib.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DKBuffer.h" />
+    <ClInclude Include="DKcommon.h" />
+    <ClInclude Include="DKEnvironment.h" />
+    <ClInclude Include="DKExceptHandler.h" />
+    <ClInclude Include="DKFileToMem.h" />
+    <ClInclude Include="DKLibDef.h" />
+    <ClInclude Include="DKManagedPtr.h" />
+    <ClInclude Include="DKMsgOnlyWnd.h" />
+    <ClInclude Include="DKobject.h" />
+    <ClInclude Include="DKObserver.h" />
+    <ClInclude Include="DKSTLAllocator.h" />
+    <ClInclude Include="DKStr2Val.h" />
+    <ClInclude Include="DK_API.h" />
+    <ClInclude Include="DK_DECIMAL.h" />
+    <ClInclude Include="EnumString.h" />
+    <ClInclude Include="ExcelImport.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StdioFileEx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="ToThousandStr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DKLib.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
